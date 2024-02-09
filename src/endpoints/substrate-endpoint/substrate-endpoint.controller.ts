@@ -39,7 +39,6 @@ import {
   geneticAnalysisByTrakingIdResponse,
   geneticAnalysisOrderByGA,
 } from './models/response';
-import { GCloudSecretManagerService } from '@debionetwork/nestjs-gcloud-secret-manager';
 import { keyList } from '../../common/secrets';
 import { MenstrualSubscriptionService } from './services/menstrual-subscription.service';
 
@@ -51,7 +50,6 @@ export class SubstrateController {
     private readonly labService: LabService,
     private readonly serviceService: ServiceService,
     private readonly orderService: OrderService,
-    private readonly gCloudSecretManagerService: GCloudSecretManagerService<keyList>,
     private readonly serviceRequestService: ServiceRequestService,
     private readonly geneticAnalysisService: GeneticAnalysisService,
     private readonly geneticAnalysisOrderService: GeneticAnalysisOrderService,
@@ -407,7 +405,7 @@ export class SubstrateController {
   ) {
     if (
       debioApiKey !==
-      this.gCloudSecretManagerService.getSecret('DEBIO_API_KEY').toString()
+      process.env.DEBIO_API_KEY.toString()
     ) {
       return response.status(401).send('debio-api-key header is required');
     }
@@ -444,7 +442,7 @@ export class SubstrateController {
 
     if (
       debioApiKey !=
-      this.gCloudSecretManagerService.getSecret('DEBIO_API_KEY').toString()
+      process.env.DEBIO_API_KEY.toString()
     ) {
       return response.status(401).send('debio-api-key header is required');
     }
