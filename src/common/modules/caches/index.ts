@@ -11,8 +11,8 @@ require('dotenv').config(); // eslint-disable-line
       ) => {
         return {
           store: redisStore,
-          host: process.env.REDIS_HOST.toString(),
-          port: process.env.REDIS_PORT.toString(),
+          host: process.env.HOST_REDIS.toString(),
+          port: process.env.PORT_REDIS.toString(),
           auth_pass: process.env.REDIS_PASSWORD.toString(),
         };
       },

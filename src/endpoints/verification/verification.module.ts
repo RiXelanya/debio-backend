@@ -18,8 +18,8 @@ import { MyriadModule } from '@endpoints/myriad/myriad.module';
       ) => {
         return {
           store: redisStore,
-          host: process.env.REDIS_HOST,
-          port: process.env.REDIS_PORT,
+          host: process.env.HOST_REDIS,
+          port: process.env.PORT_REDIS,
           auth_pass: process.env.REDIS_PASSWORD,
           ttl: 2 * 60 * 60,
         };
